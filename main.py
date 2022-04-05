@@ -102,5 +102,17 @@ if __name__ == "__main__":
     comp_max_df = result_df.loc[result_df['company']==comp_max, ]
     comp_max_df.plot(x='Date', y='Close')
     plt.show()
+    plt.close()
 
-    print(result_df)
+    # last q
+    plt.figure(figsize=(12,5))
+    plt.xlabel('Number of requests every 10 minutes')
+
+    ax1 = result_df['Adj.Close'].plot(color='blue', grid=True, label='AdjCLose1')
+    ax2 = result_df['Adj.Close'].plot(color='red', grid=True, secondary_y=True, label='AdjClose2')
+
+    h1, l1 = ax1.get_legend_handles_labels()
+    h2, l2 = ax2.get_legend_handles_labels()
+
+    plt.legend(h1+h2, l1+l2, loc=2)
+    plt.show()
